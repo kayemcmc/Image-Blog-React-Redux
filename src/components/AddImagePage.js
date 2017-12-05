@@ -1,7 +1,11 @@
 import React from 'react';
+import ImageForm from './ImageForm';
 
 const AddImagePage = () => (
-    <div>This is a AddImage</div>
+    <div>
+        <h1>Add an Image</h1>
+        <ImageForm />
+    </div>
 );
 
 export default AddImagePage;
