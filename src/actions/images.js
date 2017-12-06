@@ -8,7 +8,7 @@ export const addImage = (
         description = '',
         note = '',
         category = '',
-        imageUrl = '',
+        imagePreviewUrl = '',
         createdAt = 0
     } = {}
 ) => ({
@@ -18,7 +18,7 @@ export const addImage = (
         description,
         note,
         category,
-        imageUrl,
+        imagePreviewUrl,
         createdAt
     }
 });

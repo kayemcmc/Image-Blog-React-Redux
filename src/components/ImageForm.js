@@ -4,70 +4,91 @@ import styled from 'styled-components';
 
 
 const Img = styled.img`
-    width: 818px;
+    width: 850px;
 `;
 
 class ImageForm extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {file: '',imagePreviewUrl: ''};
-    }
-  
-    _handleSubmit(e) {
-      e.preventDefault();
-      // TODO: do something with -> this.state.file
-      console.log('handle uploading-', this.state.file);
-    }
-  
-    _handleImageChange(e) {
-      e.preventDefault();
-  
-      let reader = new FileReader();
-      let file = e.target.files[0];
-  
-      reader.onloadend = () => {
-        this.setState({
-          file: file,
-          imagePreviewUrl: reader.result
-        });
-      }
-  
-      reader.readAsDataURL(file)
-    }
-  
-    render() {
-      let {imagePreviewUrl} = this.state;
-      let $imagePreview = null;
-      if (imagePreviewUrl) {
-        $imagePreview = (<Img src={imagePreviewUrl} />);
-      } else {
-        $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-      }
-  
-      return (
-        <div className="previewComponent">
-          <form onSubmit={(e)=>this._handleSubmit(e)}>
-            <input className="fileInput" 
-              type="file" 
-              onChange={(e)=>this._handleImageChange(e)} />
-            <button className="submitButton" 
-              type="submit" 
-              onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
-              <input
-              type="text"
-              placeholder="Description"
-              autoFocus />
-          <input
-              type="text"
-              placeholder="Category"
-              autoFocus />
-          </form>
-          <div className="imgPreview">
-            {$imagePreview}
-          </div>
-        </div>
-      )
+  state = {
+    description: '', 
+    category: '',
+    imagePreviewUrl: '',
+    error: ''
+  };
+  onDescriptionChange = (e) => {
+    const description = e.target.value;
+    this.setState(()=> ({description}));
+  };
+  onCategoryChange = (e) => {
+    const category = e.target.value;
+    this.setState(()=> ({category}));
+  };
+
+  handleImageChange = (e) => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend =() => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }  
+    reader.readAsDataURL(file);
+  }
+  onSubmit = (e) => {
+    e.preventDefault();
+    if (!this.state.description || !this.state.category) {
+      this.setState(() => ({ error: 'Please provide description and category' }));
+    } else {
+      this.setState(() => ({ error: ''}));
+      this.props.onSubmit({
+        description: this.state.description,
+        category: this.state.category,
+        imagePreviewUrl: this.state.imagePreviewUrl
+      });
+      
     }
   }
-    
-export default ImageForm;
+  render() {
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<Img src={imagePreviewUrl} />);
+    } else {
+      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+    }
+    return (
+      <div>
+        <form onSubmit={this.onSubmit}>
+        {this.state.error && <p>{this.state.error}</p>}
+          <input 
+            type="text"
+            placeholder="Description"
+            autoFocus
+            value={this.state.description}
+            onChange={this.onDescriptionChange}
+          />
+          <input 
+          type="text"
+          placeholder="Category"
+          autoFocus
+          value={this.state.category}
+          onChange={this.onCategoryChange}
+        />
+        <input 
+          type="file"
+          onChange={this.handleImageChange}
+        />
+        <button>Add Your Image!</button>
+        </form>
+
+        <div className="imgPreview">
+          {$imagePreview}
+        </div>
+
+      </div>
+    )
+  }
+}
+  
+  export default ImageForm;

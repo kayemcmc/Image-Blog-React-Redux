@@ -10,7 +10,7 @@ class ImagesList extends Component {
   render (props) {
       var childElements = this.props.images.map(function(image){
           return (
-           <li className="image-element-class" style={{marginRight: '25px'}} key={image.id}>
+           <li className="image-element-class" style={{marginRight: '25px', marginBottom: '25px'}} key={image.id}>
            <ImageListItem  {...image} />
        </li>
           

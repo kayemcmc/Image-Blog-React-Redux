@@ -8,9 +8,9 @@ const Img = styled.img`
     width: 418px;
 `;
 
-const ImageListItem = ({ dispatch, id, description, category, imageUrl, createdAt}) => (
+const ImageListItem = ({ dispatch, id, description, category, imagePreviewUrl, createdAt}) => (
     <div>
-    <Img src={imageUrl} />
+    <Img src={imagePreviewUrl} />
         <h3>{description}</h3>
         <p>{category}</p>
         <button
