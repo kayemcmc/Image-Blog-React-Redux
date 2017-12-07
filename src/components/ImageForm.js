@@ -8,12 +8,16 @@ const Img = styled.img`
 `;
 
 class ImageForm extends Component {
-  state = {
-    description: '', 
-    category: '',
-    imagePreviewUrl: '',
-    error: ''
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      description: props.image ? props.image.description : '', 
+      category: props.image ? props.image.category : '',
+      imagePreviewUrl: props.image ? props.image.imagePreviewUrl : '',
+      error: ''
+    };
+  }
+ 
   onDescriptionChange = (e) => {
     const description = e.target.value;
     this.setState(()=> ({description}));
