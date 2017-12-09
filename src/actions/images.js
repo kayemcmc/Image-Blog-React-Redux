@@ -33,6 +33,14 @@ export const removeImage = ({ id } = {}) =>
     type: 'REMOVE_IMAGE',
     id
 });
+
+export const startRemoveImage = ({id} = {}) => {
+    return (dispatch) => {
+        return database.ref(`images/${id}`).remove().then(()=> {
+            dispatch(removeImage({ id }));
+        });
+    };
+};
 //EDIT_IMAGE
 export const editImage = (id, updates) => ({
     type: 'EDIT_IMAGE',
