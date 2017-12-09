@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ImageForm from './ImageForm';
-import { editImage, startRemoveImage } from '../actions/images';
+import { startEditImage, startRemoveImage } from '../actions/images';
 
 
 export class EditImagePage extends React.Component {
     onSubmit = (image) => {
-        this.props.editImage(this.props.image.id, image);
+        this.props.startEditImage(this.props.image.id, image);
         this.props.history.push('/');
     };
     onRemove = () => {
@@ -34,7 +34,7 @@ const mapStateToProps = (state, props) => {
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-    editImage: (id, image) => dispatch(editImage(id, image)),
+    startEditImage: (id, image) => dispatch(startEditImage(id, image)),
     startRemoveImage: (data) => dispatch(startRemoveImage(data))
 });
 export default connect (mapStateToProps, mapDispatchToProps)(EditImagePage);

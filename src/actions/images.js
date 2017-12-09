@@ -48,6 +48,14 @@ export const editImage = (id, updates) => ({
     updates
 });
 
+export const startEditImage = (id, updates) => {
+    return (dispatch) => {
+        return database.ref(`images/${id}`).update(updates).then(()=> {
+            dispatch(editImage(id, updates));
+        });
+    };
+};
+
 
 //SET_IMAGES
 export const setImages = (images) => ({
