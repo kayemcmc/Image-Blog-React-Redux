@@ -22,6 +22,8 @@ export default (state = imagesReducerDefaultState, action) => {
                     return image;
                 }
            });
+           case 'SET_IMAGES' :
+            return action.images;
         default: 
             return state;
     }

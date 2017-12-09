@@ -13,11 +13,5 @@ const config = {
 
   const database = firebase.database();
 
-  database.ref().set({
-    name: 'Karen P',
-    attributes: {
-        height: 120,
-        weight: 135
-    }
-  });
-  database.ref('attributes/height').set(150);
+  export { firebase, database as default};
+

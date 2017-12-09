@@ -1,27 +1,32 @@
 import uuid from 'uuid';
-
-//action generators for images
+import database from '../firebase/firebase';
 
 //ADD_IMAGE
-export const addImage = (
-    {
-        description = '',
-        note = '',
-        category = '',
-        imagePreviewUrl = '',
-        createdAt = 0
-    } = {}
-) => ({
+export const addImage = (image) => ({
     type: 'ADD_IMAGE',
-    image: {
-        id: uuid(),
-        description,
-        note,
-        category,
-        imagePreviewUrl,
-        createdAt
-    }
+    image
 });
+
+export const startAddImage = (imageData = {}) => {
+    return (dispatch) => {
+        const {
+            description = '',
+            note = '',
+            category = '',
+            imagePreviewUrl = '',
+            createdAt = 0
+        } = imageData;
+        const image = {description, note, category, imagePreviewUrl, createdAt};
+        database.ref('images').push(image)
+        .then((ref) => {
+            dispatch(addImage({
+                id: ref.key,
+                ...image
+            }));
+        });
+    };
+};
+
 //REMOVE_IMAGE
 export const removeImage = ({ id } = {}) => 
 ({
@@ -34,3 +39,26 @@ export const editImage = (id, updates) => ({
     id,
     updates
 });
+
+
+//SET_IMAGES
+export const setImages = (images) => ({
+    type: 'SET_IMAGES',
+    images
+});
+
+export const startSetImages = () => {
+    return (dispatch) => {
+       return database.ref('images').once('value').then((snapshot) => {
+            const images = [];
+
+            snapshot.forEach((childSnapshot) => {
+                images.push ({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+            dispatch(setImages(images));
+        });
+    };
+};

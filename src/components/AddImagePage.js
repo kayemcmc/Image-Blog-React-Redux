@@ -1,17 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import ImageForm from './ImageForm';
-import { addImage }  from '../actions/images';
+import { startAddImage }  from '../actions/images';
 
-const AddImagePage = (props) => (
-    <div>
-        <h1>Add an Image</h1>
-        <ImageForm 
-            onSubmit={(image) => {
-                props.dispatch(addImage(image));
-            }}
-        />
-    </div>
-);
 
-export default connect()(AddImagePage);
+export class AddImagePage extends React.Component {
+    onSubmit = (image) => {
+        this.props.startAddImage(image);
+        this.props.history.push('/');
+    };
+    render() {
+        return (
+            <div>
+            <h1>Add an Image</h1>
+            <ImageForm 
+                onSubmit={this.onSubmit}
+            />
+            </div>
+        )
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    startAddImage: (image) => dispatch(startAddImage(image))
+});
+
+export default connect(undefined, mapDispatchToProps)(AddImagePage);
