@@ -8,6 +8,7 @@ import { setTextFilter } from './actions/filters';
 import getVisibleImages from './selectors/images'
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
+import Spinner from './components/ui/Spinner';
 
 import './firebase/firebase';
 
@@ -23,7 +24,7 @@ const jsx = (
    
 )
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<Spinner />, document.getElementById('app'));
 
 store.dispatch(startSetImages()).then(() => {
     ReactDOM.render(jsx, document.getElementById('app'));
