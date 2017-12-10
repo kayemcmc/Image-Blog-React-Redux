@@ -62,7 +62,7 @@ class ImageForm extends Component {
       $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
     }
     return (
-      <div>
+      <div className="content-container">
         <form onSubmit={this.onSubmit}>
         {this.state.error && <p>{this.state.error}</p>}
           <input 

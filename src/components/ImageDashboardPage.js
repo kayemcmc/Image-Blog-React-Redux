@@ -4,7 +4,9 @@ import ImagesListFilters from './ImagesListFilters';
 
 const ImageDashboardPage = () => (
     <div>
+        <div className="content-container">
         <ImagesListFilters />
+        </div>
          <ImagesList />
      </div>
 );

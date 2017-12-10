@@ -15,12 +15,13 @@ export class EditImagePage extends React.Component {
     };
     render() {
         return (
-            <div>
+            <div className="content-container">
+            <button onClick={this.onRemove}>Remove </button>
             <ImageForm 
                 image={this.props.image}
                 onSubmit={this.onSubmit}
             />
-            <button onClick={this.onRemove}>Remove </button>
+            
             </div>
         );
     }
