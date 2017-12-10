@@ -3,7 +3,7 @@ import './Spinner.css';
 
 const Spinner = () => (
    <div className="centered"> 
-   Your awesome images are loading<br/>
+   Image App is loading<br/>
    from Heroku & Firebase!
     <div className="loader">
         Loading...
