@@ -14,7 +14,7 @@ export default (state = filtersReducerDefaultState, action) => {
         ...state,
         text: action.text
       };
-    case 'SORT_BY_CATEGRY':
+    case 'SORT_BY_CATEGORY':
       return {
         ...state,
         sortBy: 'category'

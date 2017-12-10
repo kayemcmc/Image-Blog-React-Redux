@@ -7,7 +7,7 @@ export default (images, {text, sortBy, startDate, endDate}) => {
       //startDate !== number only if its a number will we filter images
       const startDateMatch = typeof startDate !== 'number' || image.createdAt >= startDate;
       const endDateMatch = typeof endDate !== 'number' || image.createdAt <= endDate;
-      const textMatch = image.description.toLowerCase().includes(text.toLowerCase());
+      const textMatch = image.description.toLowerCase().includes(text.toLowerCase()) || image.category.toLowerCase().includes(text.toLowerCase());
 
       return startDateMatch && endDateMatch && textMatch;
       //if its a match for all three the item filtered will be returned
