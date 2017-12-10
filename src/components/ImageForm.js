@@ -83,7 +83,7 @@ class ImageForm extends Component {
           type="file"
           onChange={this.handleImageChange}
         />
-        <button>Add Your Image!</button>
+        <button>Add or Edit Your Image!</button>
         </form>
 
         <div className="imgPreview">
