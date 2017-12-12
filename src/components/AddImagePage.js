@@ -12,7 +12,7 @@ export class AddImagePage extends React.Component {
     render() {
         return (
             <div>
-            <h1>Add an Image</h1>
+            <h1 style={{textAlign: 'center'}}>Add an Image</h1>
             <ImageForm 
                 onSubmit={this.onSubmit}
             />

@@ -62,11 +62,12 @@ class ImageForm extends Component {
       $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
     }
     return (
-      <div className="content-container">
+      <div className="content-container page-header">
         <form onSubmit={this.onSubmit}>
         {this.state.error && <p>{this.state.error}</p>}
           <input 
             type="text"
+            className="text-input"
             placeholder="Description"
             autoFocus
             value={this.state.description}
@@ -74,6 +75,7 @@ class ImageForm extends Component {
           />
           <input 
           type="text"
+          className="text-input"
           placeholder="Category"
           autoFocus
           value={this.state.category}
@@ -83,7 +85,7 @@ class ImageForm extends Component {
           type="file"
           onChange={this.handleImageChange}
         />
-        <button>Add or Edit Your Image!</button>
+        <button className="button">Add or Edit Your Image!</button>
         </form>
 
         <div className="imgPreview">

@@ -16,7 +16,11 @@ export class EditImagePage extends React.Component {
     render() {
         return (
             <div className="content-container">
-            <button onClick={this.onRemove}>Remove </button>
+            <div className="delete-button-container">
+            <button 
+                onClick={this.onRemove}
+                className="delete-button">X</button>
+                </div>
             <ImageForm 
                 image={this.props.image}
                 onSubmit={this.onSubmit}

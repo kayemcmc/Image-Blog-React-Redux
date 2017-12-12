@@ -5,6 +5,7 @@ import { setTextFilter, sortByDate, sortByCategory } from '../actions/filters';
 const ImagesListFilters = (props) => (
     <div>
     <input type="text" 
+            className="text-input"
             value={props.filters.text} 
             onChange={(e) => {
             props.dispatch(setTextFilter(e.target.value));
